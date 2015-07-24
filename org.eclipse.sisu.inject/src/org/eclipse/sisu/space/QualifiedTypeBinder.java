@@ -261,7 +261,7 @@ public final class QualifiedTypeBinder
         }
 
         final Named bindingName = getBindingName( qualifiedType );
-        final Class<?>[] types = getBindingTypes( qualifiedType );
+        final Class<?>[] types = getBindingQualifierType( qualifiedType );
 
         if ( null != types )
         {
@@ -411,6 +411,21 @@ public final class QualifiedTypeBinder
             }
         }
         return null;
+    }
+
+    private static Class<?>[] getBindingQualifierType( final Class<?> clazz )
+    {
+        Class<?>[] types = getBindingTypes(clazz);
+
+        if (types == null) {
+            if (clazz != null && clazz != Object.class && clazz.getInterfaces().length > 0) {
+                return clazz.getInterfaces();
+            } else {
+                return null;
+            }
+        } else {
+            return types;
+        }
     }
 
     private static boolean isSingleton( final Class<?> type )
