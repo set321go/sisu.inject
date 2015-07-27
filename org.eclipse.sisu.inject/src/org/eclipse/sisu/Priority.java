@@ -17,9 +17,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Defines the priority ordering of a bean:<br>
+ * Defines the priority ordering of a bean. Higher values have higher priority. When no {@link Priority} is not defined the default bean (refer to
+ * com.eclipse.sisu.space javadoc) will have priority over any other beans:<br>
  * <br>
- * 
+ *
+ *
  * <pre>
  * &#064;Named
  * &#064;Priority( 999 )
